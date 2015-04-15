@@ -1,4 +1,4 @@
-package com.materialnotes.data.dao.impl.sqlite;
+package com.materialnotes.config.data.dao.impl.sqlite;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -7,8 +7,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 import android.util.Log;
 
-import com.materialnotes.data.Note;
-import com.materialnotes.data.dao.NoteDAO;
+import com.materialnotes.config.data.Note;
+import com.materialnotes.config.data.dao.NoteDAO;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,11 +16,6 @@ import java.util.Date;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-/**
- * Clase que recupera notas de una base de datos SQLite.
- *
- * @author Daniel Pedraza Arcega
- */
 public class NoteSQLiteDAO implements NoteDAO {
 
     private static final String TAG = NoteSQLiteDAO.class.getSimpleName();
@@ -28,21 +23,11 @@ public class NoteSQLiteDAO implements NoteDAO {
 
     private final SQLiteOpenHelper databaseHelper;
 
-    /**
-     * Construye un NoteSQLiteDAO usando el SQLiteOpenHelper dado.
-     *
-     * @param databaseHelper un SQLiteOpenHelper.
-     */
     @Inject
     public NoteSQLiteDAO(@Named("NotesDbHelper") SQLiteOpenHelper databaseHelper) {
         this.databaseHelper = databaseHelper;
     }
 
-    /**
-     * @see <a href="http://bit.ly/1whYCa6">Read Information from a Database</a>
-     * @return recupera todas las notas de la tabla {@link NoteEntry#TABLE_NAME}
-     */
-    @Override
     public ArrayList<Note> fetchAll() {
         ArrayList<Note> result = null;
         Cursor cursor = null;
@@ -79,12 +64,6 @@ public class NoteSQLiteDAO implements NoteDAO {
         return result;
     }
 
-    /**
-     * Inserta una nota en la tabla {@link NoteEntry#TABLE_NAME}.
-     *
-     * @see <a href="http://bit.ly/1D3oTNG">Put Information into a Database</a>
-     * @param note la nota a insertar.
-     */
     @Override
     public void insert(Note note) {
         SQLiteDatabase database = databaseHelper.getWritableDatabase();
@@ -106,12 +85,6 @@ public class NoteSQLiteDAO implements NoteDAO {
         }
     }
 
-    /**
-     * Actualiza una nota la tabla {@link NoteEntry#TABLE_NAME}.
-     *
-     * @see <a href="http://bit.ly/1tOS68i">Update a Database</a>
-     * @param note la nota a actualizar.
-     */
     @Override
     public void update(Note note) {
         SQLiteDatabase database = databaseHelper.getWritableDatabase();
@@ -132,12 +105,6 @@ public class NoteSQLiteDAO implements NoteDAO {
         }
     }
 
-    /**
-     * Borra una nota de la tabla {@link NoteEntry#TABLE_NAME}.
-     *
-     * @see <a href="http://bit.ly/1syEh1A">Delete Information from a Database</a>
-     * @param note la nota a borrar.
-     */
     @Override
     public void delete(Note note) {
         SQLiteDatabase database = databaseHelper.getWritableDatabase();
@@ -154,7 +121,6 @@ public class NoteSQLiteDAO implements NoteDAO {
         }
     }
 
-    /** Constantes de la tabla de notas. */
     private static class NoteEntry implements BaseColumns {
         private static final String TABLE_NAME = "note";
         private static final String TITLE = "title";

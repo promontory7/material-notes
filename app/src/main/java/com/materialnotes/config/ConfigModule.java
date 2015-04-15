@@ -6,13 +6,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
 
-import com.materialnotes.data.source.sqlite.NotesDatabaseHelper;
+import com.materialnotes.config.data.source.sqlite.NotesDatabaseHelper;
 
-/**
- * Clase para cablear dependencias de la aplicación
- *
- * @author Daniel Pedraza Arcega
- */
 public class ConfigModule extends AbstractModule {
 
     private final Application context;
@@ -21,7 +16,6 @@ public class ConfigModule extends AbstractModule {
         this.context = context;
     }
 
-    /** Cablea las implementaciones. */
     @Override
     protected void configure() {
         bind(SQLiteOpenHelper.class)

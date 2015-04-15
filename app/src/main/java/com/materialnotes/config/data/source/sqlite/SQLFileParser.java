@@ -1,4 +1,4 @@
-package com.materialnotes.data.source.sqlite;
+package com.materialnotes.config.data.source.sqlite;
 
 import android.util.Log;
 
@@ -10,22 +10,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.regex.Pattern;
 
-/**
- * Clase para parsear archivos *.sql
- *
- * @author Daniel Pedraza Arcega
- */
 class SQLFileParser {
 
     private static final String TAG = SQLFileParser.class.getSimpleName();
     private static final Pattern COMMENT_PATTERN = Pattern.compile("(?:/\\*[^;]*?\\*/)|(?:--[^;]*?$)", Pattern.DOTALL | Pattern.MULTILINE);
 
-    /**
-     * Regresa todas las sentencias SQL contenidas en un archivo *.sql
-     *
-     * @param stream el stream del archivo *.sql
-     * @return las sentencias SQL.
-     */
     static String[] getSQLStatements(InputStream stream) {
         BufferedReader reader = null;
         try {
